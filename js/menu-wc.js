@@ -54,16 +54,16 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                         </div>
                         <ul class="links collapse " ${ isNormalMode ? 'id="additional-pages"' : 'id="xs-additional-pages"' }>
                                     <li class="link ">
-                                        <a href="additional-documentation/upgrading-the-digital-commerce-template-from-december-&#x27;21-to-may-&#x27;22.html" data-type="entity-link" data-context-id="additional">Upgrading the Digital Commerce Template from December &#x27;21 to May &#x27;22</a>
+                                        <a href="additional-documentation/upgrading-the-digital-commerce-template-from-may-&#x27;22-to-february-&#x27;23.html" data-type="entity-link" data-context-id="additional">Upgrading the Digital Commerce Template from May &#x27;22 to February &#x27;23</a>
                                     </li>
                                     <li class="link ">
-                                        <a href="additional-documentation/upgrading-the-partner-commerce-template-from-december-&#x27;21-to-may-&#x27;22.html" data-type="entity-link" data-context-id="additional">Upgrading the Partner Commerce Template from December &#x27;21 to May &#x27;22</a>
+                                        <a href="additional-documentation/upgrading-the-partner-commerce-template-from-may-&#x27;22-to-february-&#x27;23.html" data-type="entity-link" data-context-id="additional">Upgrading the Partner Commerce Template from May &#x27;22 to February &#x27;23</a>
                                     </li>
                                     <li class="link ">
-                                        <a href="additional-documentation/upgrading-the-digital-commerce-template-from-spring-&#x27;21-to-may-&#x27;22.html" data-type="entity-link" data-context-id="additional">Upgrading the Digital Commerce Template from Spring &#x27;21 to May &#x27;22</a>
+                                        <a href="additional-documentation/upgrading-the-digital-commerce-template-from-september-&#x27;22-to-february-&#x27;23.html" data-type="entity-link" data-context-id="additional">Upgrading the Digital Commerce Template from September &#x27;22 to February &#x27;23</a>
                                     </li>
                                     <li class="link ">
-                                        <a href="additional-documentation/upgrading-the-partner-commerce-template-from-spring-&#x27;21-to-may-&#x27;22.html" data-type="entity-link" data-context-id="additional">Upgrading the Partner Commerce Template from Spring &#x27;21 to May &#x27;22</a>
+                                        <a href="additional-documentation/upgrading-the-partner-commerce-template-from-september-&#x27;22-to-february-&#x27;23.html" data-type="entity-link" data-context-id="additional">Upgrading the Partner Commerce Template from September &#x27;22 to February &#x27;23</a>
                                     </li>
                         </ul>
                     </li>
