@@ -58,7 +58,7 @@
 <ul>
 <li><a href="#upgrade-libs">Updating the libraries</a></li>
 <li><a href="#update-npmrc">Updating npmrc file</a></li>
-<li><a href="#updateOrderDetail">Update order detail component file</a></li>
+<li><a href="#updateRequestQuoteForm">Update request quote form component file</a></li>
 <li><a href="#translationFiles">Update translation files</a></li>
 </ul>
 <div id="upgrade-libs"/>
@@ -95,29 +95,52 @@
 <div><pre class="line-numbers"><code class="language-typescript">&#64;congacommerce:registry=https://npm.pkg.github.com
 //npm.pkg.github.com/:_authToken={{GITHUB AUTH TOKEN}}
 </code></pre></div><p>As this is a public github repository with read permissions, you don&#39;t need any access to install these packages.</p>
-<div id="updateOrderDetail"/>
+<div id="updateRequestQuoteForm"/>
 
-<h2 id="update-order-detail-component">Update Order detail component.</h2>
-<p>In February &#39;23 release, you must update confirmOrder method in Order detail component to call <strong><em>&quot;statusChangeNotification()&quot;</em></strong> instead of <strong><em>&quot;orderStatusChangeNotification()&quot;</em></strong>. This change is required in your template, to ensure the project is built successfully.</p>
+
+<h2 id="update-request-quote-form-component">Update Request Quote Form component.</h2>
+<p>In February &#39;23 release, you must update shipToChange, billToChange and primaryContactChange methods in RequestQuoteForm component to handle PrimaryContact, ShipToAccount, BillToAccount field values when set to null in request quote page.</p>
+<p>1.) billToChange method:-</p>
 <p><strong><em>Before Change</em></strong></p>
-<div><pre class="line-numbers"><code class="language-typescript">confirmOrder(orderId: string, primaryContactId: string) {
+<div><pre class="line-numbers"><code class="language-typescript">billToChange() {
     ...
-      if (res) {
-        ...
-        this.emailService.orderStatusChangeNotification(&#39;CustomerOrderEmailNotificationsTemplate&#39;, orderId, primaryContactId).pipe(take(1)).subscribe();
-        ...
-      }
+      this.onQuoteUpdate.emit(this.quote);
+  }</code></pre></div><p><strong><em>After Change</em></strong></p>
+<div><pre class="line-numbers"><code class="language-typescript"> billToChange() {
+    if (this.quote.BillToAccountId) {
+      ...
+    } else {
+      this.quote.BillToAccount = null;
+      this.billToAccount$= null;
+      this.onQuoteUpdate.emit(this.quote);
+    }
+  }</code></pre></div><p>2.) shipToChange method:-</p>
+<p><strong><em>Before Change</em></strong></p>
+<div><pre class="line-numbers"><code class="language-typescript">shipToChange() {
+    ...
+      this.onQuoteUpdate.emit(this.quote);
+  }</code></pre></div><p><strong><em>After Change</em></strong></p>
+<div><pre class="line-numbers"><code class="language-typescript"> shipToChange() {
+    if (this.quote.BillToAccountId) {
+      ...
+    } else {
+      this.quote.ShipToAccount = null;
+      this.shipToAccount$= null;
+      this.onQuoteUpdate.emit(this.quote);
+    }
+  }</code></pre></div><p>3.) primaryContactChange method:-</p>
+<p><strong><em>Before Change</em></strong></p>
+<div><pre class="line-numbers"><code class="language-typescript">primaryContactChange() {
     ...
   }</code></pre></div><p><strong><em>After Change</em></strong></p>
-<div><pre class="line-numbers"><code class="language-typescript">confirmOrder(orderId: string, primaryContactId: string) {
+<div><pre class="line-numbers"><code class="language-typescript">primaryContactChange() {
+  if (this.contactId) {
     ...
-      if (res) {
-        ...
-        this.emailService.statusChangeNotification(&#39;CustomerOrderEmailNotificationsTemplate&#39;, orderId, primaryContactId).pipe(take(1)).subscribe();
-        ...
-      }
-    ...
-  }</code></pre></div><div id="translationFiles" />
+  } else {
+    this.quote.Primary_Contact = null;
+    this.onQuoteUpdate.emit(this.quote);
+  }
+}</code></pre></div><div id="translationFiles" />
 
 <h2 id="update-translation-files">Update translation files.</h2>
 <p>In February &#39;23 release, update translation files including en_US.json, es.json, fr.json, it.json to ensure static text and toast messages are translated based on the locale.</p>
